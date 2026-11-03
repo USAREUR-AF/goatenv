@@ -43,6 +43,16 @@ goatnets:
     ca_id_var: nova_ca_id
 # END goatlite zagros
 components:
+  # BEGIN goatlite zagros (pins: audit-subscriber)
+  audit-subscriber:
+    deviations:
+      zagros:
+        absent: true
+        reason: >-
+          goatlite (ADR 1213): audit-subscriber is above a goatlite's tier ceiling
+          (site_deploy_tier_max 1, service-criticality-tiers.md) or is deployed by
+          no standup phase on one LAN box; rendered by ops/scripts/goatlite-render.py.
+  # END goatlite zagros (pins: audit-subscriber)
   # BEGIN goatlite zagros (pins: consistency-aggregator)
   consistency-aggregator:
     deviations:
@@ -162,6 +172,16 @@ components:
           (site_deploy_tier_max 1, service-criticality-tiers.md) or is deployed by
           no standup phase on one LAN box; rendered by ops/scripts/goatlite-render.py.
   # END goatlite zagros (pins: herd-connector)
+  # BEGIN goatlite zagros (pins: id-admin-console)
+  id-admin-console:
+    deviations:
+      zagros:
+        absent: true
+        reason: >-
+          goatlite (ADR 1213): id-admin-console is above a goatlite's tier ceiling
+          (site_deploy_tier_max 1, service-criticality-tiers.md) or is deployed by
+          no standup phase on one LAN box; rendered by ops/scripts/goatlite-render.py.
+  # END goatlite zagros (pins: id-admin-console)
   # BEGIN goatlite zagros (pins: mesh-health)
   mesh-health:
     deviations:
