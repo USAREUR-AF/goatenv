@@ -1,5 +1,5 @@
 {
-  "ca_id": "dev-zagros-ca-ecdsa-2026-11-03",
+  "ca_id": "dev-zagros-ca-ecdsa-2026-11-04",
   "capabilities": [
     {
       "members": {
@@ -635,9 +635,9 @@
       "var": "goat_docs_image"
     }
   ],
-  "content_hash": "sha256:25cdc01635ac04f0cdb6f7f175b327edc757d50bc21cbb5f980ca3fa0ac6b79c",
+  "content_hash": "sha256:9e5e563e4f4aa856570754297b1292fa9d9a73416d26d4928ea78f6c84a9bd73",
   "format": "goat-intent-v1",
-  "generated_at": "2026-11-03T22:29:19Z",
+  "generated_at": "2026-11-03T23:16:54Z",
   "goatnet": "zagros",
   "history": [],
   "members": [

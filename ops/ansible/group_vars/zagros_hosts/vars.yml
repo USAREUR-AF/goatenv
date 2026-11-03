@@ -106,7 +106,7 @@ chrony_max_drift_ppm: 50
 
 # -- Internal CA (minted by phase 4, mint-site-certs.sh --mint-ca-if-missing) --
 # The var name is the one the goat-zenoh role reads; the VALUE is this goatnet's own CA.
-nova_ca_id: "dev-zagros-ca-ecdsa-2026-11-03"
+nova_ca_id: "dev-zagros-ca-ecdsa-2026-11-04"
 nova_ca_root_cert: "ops/enrollment/ca/zagros/root-cert.pem"
 nova_ca_root_cert_path: "{{ playbook_dir }}/../enrollment/ca/zagros/root-cert.pem"
 internal_ca_root_path: "{{ playbook_dir }}/../enrollment/ca/zagros/root-cert.pem"
