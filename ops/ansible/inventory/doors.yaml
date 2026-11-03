@@ -1,0 +1,11 @@
+# How a laptop reaches each goatnet. goatlite adds its door here.
+doors:
+
+  # BEGIN goatlite zagros
+  zagros:
+    type: direct
+    host: 192.0.2.10
+    user: ubuntu
+    mgmt:
+      - {name: mgmt-zagros-01, router_role: A, group: zagros_door_hosts, gv_group: zagros_hosts, landed: true}
+      # END goatlite zagros
