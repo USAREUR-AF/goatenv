@@ -1,0 +1,12 @@
+# Every goatnet's relay-health box. goatlite adds its row here.
+schema: goat/cross-env/v1
+goatnets:
+
+  # BEGIN goatlite zagros
+  zagros:
+    id: zagros
+    label: zagros
+    role: dev
+    relay_health:
+      absent: "goatlite (ADR 1213): a LAN goatnet with no relay tier and no cloud host"
+      # END goatlite zagros

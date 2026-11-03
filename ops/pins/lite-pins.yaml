@@ -1,0 +1,254 @@
+---
+# ops/pins/lite-pins.yaml — the lite sidecar of the fleet pin table.
+#
+# A goatlite goatnet (ADR 1213, docs/design/goatlite.md) is declared HERE, never
+# in fleet-pins.yaml. ops/pins/generate-pins.py and `goatbuilder pins` read both
+# files and work on ONE merged table: goatnets are unioned (a name in both is an
+# error) and each component's `deviations:` are unioned by scope (a scope in
+# both is an error). Everything downstream — pins.yml, intent.json, --check —
+# sees the merged table.
+#
+# WHY a sidecar: every committed intent carries the sha256 of fleet-pins.yaml in
+# its `sources`. A learner rendering a goatlite into their checkout must not
+# move that hash, because they cannot re-sign goat's intents. A goatnet declared
+# here carries this file's hash as well, in its own intent only.
+#
+# This file carries two things and refuses everything else:
+#   goatnets:                              same shape as fleet-pins.yaml
+#     <goatnet>:
+#       description: <one line>
+#       members: [<group_vars dir>, ...]
+#       ca_id_var: <ansible var name>
+#   components:                            DEVIATIONS ONLY
+#     <component-name>:                    must be a component of fleet-pins.yaml
+#       deviations:
+#         <goatnet or member>:             declared in THIS file's goatnets:
+#           absent: true | value: <ref>
+#           reason: <why>
+# A `var:`, `fleet:` or any other component key here is refused: component
+# definitions live in fleet-pins.yaml.
+#
+# ops/scripts/goatlite-render.py writes a goatlite's row and deviation blocks
+# between `# BEGIN goatlite <name>` / `# END goatlite <name>` markers and
+# `--remove` takes them back out; hand content outside the markers is kept.
+goatnets:
+  # BEGIN goatlite zagros
+  zagros:
+    description: >-
+      zagros — a goatlite goatnet (ADR 1213): one LAN host at tier ceiling 1,
+      rendered from goatlite.yaml by ops/scripts/goatlite-render.py and governed
+      from day one, so no pin ever lives in its hand-authored group_vars.
+    members:
+      - zagros_hosts
+    ca_id_var: nova_ca_id
+# END goatlite zagros
+components:
+  # BEGIN goatlite zagros (pins: consistency-aggregator)
+  consistency-aggregator:
+    deviations:
+      zagros:
+        absent: true
+        reason: >-
+          goatlite (ADR 1213): consistency-aggregator is above a goatlite's tier ceiling
+          (site_deploy_tier_max 1, service-criticality-tiers.md) or is deployed by
+          no standup phase on one LAN box; rendered by ops/scripts/goatlite-render.py.
+  # END goatlite zagros (pins: consistency-aggregator)
+  # BEGIN goatlite zagros (pins: consistency-console)
+  consistency-console:
+    deviations:
+      zagros:
+        absent: true
+        reason: >-
+          goatlite (ADR 1213): consistency-console is above a goatlite's tier ceiling
+          (site_deploy_tier_max 1, service-criticality-tiers.md) or is deployed by
+          no standup phase on one LAN box; rendered by ops/scripts/goatlite-render.py.
+  # END goatlite zagros (pins: consistency-console)
+  # BEGIN goatlite zagros (pins: consistency-health)
+  consistency-health:
+    deviations:
+      zagros:
+        absent: true
+        reason: >-
+          goatlite (ADR 1213): consistency-health is above a goatlite's tier ceiling
+          (site_deploy_tier_max 1, service-criticality-tiers.md) or is deployed by
+          no standup phase on one LAN box; rendered by ops/scripts/goatlite-render.py.
+  # END goatlite zagros (pins: consistency-health)
+  # BEGIN goatlite zagros (pins: crypto-posture)
+  crypto-posture:
+    deviations:
+      zagros:
+        absent: true
+        reason: >-
+          goatlite (ADR 1213): crypto-posture is above a goatlite's tier ceiling
+          (site_deploy_tier_max 1, service-criticality-tiers.md) or is deployed by
+          no standup phase on one LAN box; rendered by ops/scripts/goatlite-render.py.
+  # END goatlite zagros (pins: crypto-posture)
+  # BEGIN goatlite zagros (pins: e2e-canary)
+  e2e-canary:
+    deviations:
+      zagros:
+        absent: true
+        reason: >-
+          goatlite (ADR 1213): e2e-canary is above a goatlite's tier ceiling
+          (site_deploy_tier_max 1, service-criticality-tiers.md) or is deployed by
+          no standup phase on one LAN box; rendered by ops/scripts/goatlite-render.py.
+  # END goatlite zagros (pins: e2e-canary)
+  # BEGIN goatlite zagros (pins: fabric-crawler)
+  fabric-crawler:
+    deviations:
+      zagros:
+        absent: true
+        reason: >-
+          goatlite (ADR 1213): fabric-crawler is above a goatlite's tier ceiling
+          (site_deploy_tier_max 1, service-criticality-tiers.md) or is deployed by
+          no standup phase on one LAN box; rendered by ops/scripts/goatlite-render.py.
+  # END goatlite zagros (pins: fabric-crawler)
+  # BEGIN goatlite zagros (pins: fabric-health)
+  fabric-health:
+    deviations:
+      zagros:
+        absent: true
+        reason: >-
+          goatlite (ADR 1213): fabric-health is above a goatlite's tier ceiling
+          (site_deploy_tier_max 1, service-criticality-tiers.md) or is deployed by
+          no standup phase on one LAN box; rendered by ops/scripts/goatlite-render.py.
+  # END goatlite zagros (pins: fabric-health)
+  # BEGIN goatlite zagros (pins: flashlight)
+  flashlight:
+    deviations:
+      zagros:
+        absent: true
+        reason: >-
+          goatlite (ADR 1213): flashlight is above a goatlite's tier ceiling
+          (site_deploy_tier_max 1, service-criticality-tiers.md) or is deployed by
+          no standup phase on one LAN box; rendered by ops/scripts/goatlite-render.py.
+  # END goatlite zagros (pins: flashlight)
+  # BEGIN goatlite zagros (pins: goat-topology)
+  goat-topology:
+    deviations:
+      zagros:
+        absent: true
+        reason: >-
+          goatlite (ADR 1213): goat-topology is above a goatlite's tier ceiling
+          (site_deploy_tier_max 1, service-criticality-tiers.md) or is deployed by
+          no standup phase on one LAN box; rendered by ops/scripts/goatlite-render.py.
+  # END goatlite zagros (pins: goat-topology)
+  # BEGIN goatlite zagros (pins: grant-keyd)
+  grant-keyd:
+    deviations:
+      zagros:
+        absent: true
+        reason: >-
+          goatlite (ADR 1213): the fleet row is null and the dev rung carries no
+          value either; not deployed on a goatlite. Rendered by ops/scripts/goatlite-render.py.
+  # END goatlite zagros (pins: grant-keyd)
+  # BEGIN goatlite zagros (pins: herd)
+  herd:
+    deviations:
+      zagros:
+        absent: true
+        reason: >-
+          goatlite (ADR 1213): herd is above a goatlite's tier ceiling
+          (site_deploy_tier_max 1, service-criticality-tiers.md) or is deployed by
+          no standup phase on one LAN box; rendered by ops/scripts/goatlite-render.py.
+  # END goatlite zagros (pins: herd)
+  # BEGIN goatlite zagros (pins: herd-connector)
+  herd-connector:
+    deviations:
+      zagros:
+        absent: true
+        reason: >-
+          goatlite (ADR 1213): herd-connector is above a goatlite's tier ceiling
+          (site_deploy_tier_max 1, service-criticality-tiers.md) or is deployed by
+          no standup phase on one LAN box; rendered by ops/scripts/goatlite-render.py.
+  # END goatlite zagros (pins: herd-connector)
+  # BEGIN goatlite zagros (pins: mesh-health)
+  mesh-health:
+    deviations:
+      zagros:
+        absent: true
+        reason: >-
+          goatlite (ADR 1213): mesh-health is above a goatlite's tier ceiling
+          (site_deploy_tier_max 1, service-criticality-tiers.md) or is deployed by
+          no standup phase on one LAN box; rendered by ops/scripts/goatlite-render.py.
+  # END goatlite zagros (pins: mesh-health)
+  # BEGIN goatlite zagros (pins: microscope)
+  microscope:
+    deviations:
+      zagros:
+        absent: true
+        reason: >-
+          goatlite (ADR 1213): microscope is above a goatlite's tier ceiling
+          (site_deploy_tier_max 1, service-criticality-tiers.md) or is deployed by
+          no standup phase on one LAN box; rendered by ops/scripts/goatlite-render.py.
+  # END goatlite zagros (pins: microscope)
+  # BEGIN goatlite zagros (pins: netvis)
+  netvis:
+    deviations:
+      zagros:
+        absent: true
+        reason: >-
+          goatlite (ADR 1213): netvis is above a goatlite's tier ceiling
+          (site_deploy_tier_max 1, service-criticality-tiers.md) or is deployed by
+          no standup phase on one LAN box; rendered by ops/scripts/goatlite-render.py.
+  # END goatlite zagros (pins: netvis)
+  # BEGIN goatlite zagros (pins: node-net-health)
+  node-net-health:
+    deviations:
+      zagros:
+        absent: true
+        reason: >-
+          goatlite (ADR 1213): node-net-health is above a goatlite's tier ceiling
+          (site_deploy_tier_max 1, service-criticality-tiers.md) or is deployed by
+          no standup phase on one LAN box; rendered by ops/scripts/goatlite-render.py.
+  # END goatlite zagros (pins: node-net-health)
+  # BEGIN goatlite zagros (pins: ntp-health-pub)
+  ntp-health-pub:
+    deviations:
+      zagros:
+        absent: true
+        reason: >-
+          goatlite (ADR 1213): ntp-health-pub is above a goatlite's tier ceiling
+          (site_deploy_tier_max 1, service-criticality-tiers.md) or is deployed by
+          no standup phase on one LAN box; rendered by ops/scripts/goatlite-render.py.
+  # END goatlite zagros (pins: ntp-health-pub)
+  # BEGIN goatlite zagros (pins: panoscope)
+  panoscope:
+    deviations:
+      zagros:
+        absent: true
+        reason: >-
+          goatlite (ADR 1213): panoscope is above a goatlite's tier ceiling
+          (site_deploy_tier_max 1, service-criticality-tiers.md) or is deployed by
+          no standup phase on one LAN box; rendered by ops/scripts/goatlite-render.py.
+  # END goatlite zagros (pins: panoscope)
+  # BEGIN goatlite zagros (pins: presence-health)
+  presence-health:
+    deviations:
+      zagros:
+        absent: true
+        reason: >-
+          goatlite (ADR 1213): presence-health is above a goatlite's tier ceiling
+          (site_deploy_tier_max 1, service-criticality-tiers.md) or is deployed by
+          no standup phase on one LAN box; rendered by ops/scripts/goatlite-render.py.
+  # END goatlite zagros (pins: presence-health)
+  # BEGIN goatlite zagros (pins: stethoscope)
+  stethoscope:
+    deviations:
+      zagros:
+        absent: true
+        reason: >-
+          goatlite (ADR 1213): stethoscope is above a goatlite's tier ceiling
+          (site_deploy_tier_max 1, service-criticality-tiers.md) or is deployed by
+          no standup phase on one LAN box; rendered by ops/scripts/goatlite-render.py.
+  # END goatlite zagros (pins: stethoscope)
+  # BEGIN goatlite zagros (pins: time-health)
+  time-health:
+    deviations:
+      zagros:
+        absent: true
+        reason: >-
+          goatlite (ADR 1213): time-health is above a goatlite's tier ceiling
+          (site_deploy_tier_max 1, service-criticality-tiers.md) or is deployed by
+          no standup phase on one LAN box; rendered by ops/scripts/goatlite-render.py.
+          # END goatlite zagros (pins: time-health)
