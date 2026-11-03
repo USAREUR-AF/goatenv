@@ -9,7 +9,7 @@
 </p>
 
 > [!NOTE]
-> goat is pre-1.0. Until goatcore's first tag, `goatcore/v0.1.0`, this repository is regenerated from its source tree and `main` may be replaced; clone again rather than pull.
+> goat is pre-1.0: interfaces can still change between releases. This repository is generated from goat's source tree; each update arrives as a new commit on `main`.
 
 This is what a goat environment looks like when it is written down: one goatnet, `zagros`, as an overlay that uses [`goatcore`](https://github.com/usareur-af/goatcore) by pinned release. It is generated from the four invented facts in `goatlite.yaml`, and every value is an example. Copy it, change the facts and render your own.
 
