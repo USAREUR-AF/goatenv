@@ -1,0 +1,11 @@
+# Secrets, when this tree is used as a repository root. They are never committed.
+.envrc.local
+.envrc.local.d/
+*.age
+*.key
+# Local state
+.DS_Store
+__pycache__/
+.terraform/
+*.tfstate
+*.tfstate.*
