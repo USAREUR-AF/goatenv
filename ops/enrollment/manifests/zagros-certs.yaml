@@ -141,3 +141,8 @@ leaves:
     append_root: true
     sans:
       - dashboard.zagros.zagros.lan
+  # --- the founder: the one person on a goatlite
+  - name: founder
+    cn: goat-founder-trial-peer
+    sans: [goat-founder-trial-peer]
+    uri_sans: ["urn:goat:zagros:operator:founder"]
