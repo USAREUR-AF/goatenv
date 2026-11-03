@@ -41,4 +41,4 @@ To make your own, change all four facts in `goatlite.yaml`, including the name, 
 
 ## Licence
 
-Apache License 2.0 ([LICENSE](LICENSE)). [CONTRIBUTING.md](CONTRIBUTING.md) · [SECURITY.md](SECURITY.md).
+`goatenv` was written by U.S. Federal government employees. In the U.S. it is not subject to copyright and is in the public domain; in countries where copyright is recognized, it is released under the [Apache License 2.0](LICENSE). See [INTENT.md](INTENT.md). [CONTRIBUTING.md](CONTRIBUTING.md) · [SECURITY.md](SECURITY.md).
