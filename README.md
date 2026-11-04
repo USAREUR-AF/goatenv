@@ -27,23 +27,6 @@ This is what a goat environment looks like when it is written down: one goatnet,
 
 Secrets are never in this repository. A laptop-only start uses `goatbuilder secrets init`, and larger teams declare their own store.
 
-## What `zagros` covers
-
-`zagros` is a LAN goatnet: `has_acme: false`, no relay addresses, and a private `zagros.lan` DNS zone served by the host's own CoreDNS. Peers enroll over the LAN.
-
-An internet goatnet, with peers enrolling through relays, a public DNS zone and ACME certificates, needs more than this tree holds:
-
-| Needs | Where it comes from |
-|---|---|
-| relays and their public DNS | `terraform-zagros/`, then `ops/ansible/inventory/generate-relays.sh` in `goatcore` |
-| the mgmt host's tunnels to the relays (standup phase 5) | `goatcore`'s `ops/ansible/site-rathole-client.yml` |
-| the site's OIDC clients (standup phase 10) | `goatcore`'s `ops/ansible/site-oidc-clients.yml` |
-| a public zone, ACME and relay addresses in `group_vars` | written by hand; goatlite's renderer refuses `lite.internet` until growing out of lite is built ([goatlite design](https://github.com/usareur-af/goatcore/blob/main/docs/design/goatlite.md), sections 6 and 10) |
-
-The two generic plays ship in `goatcore` releases after `goatcore/v0.1.0`; move `goatcore.ref` to one of those to use them.
-
-The `ops/scripts/` tools are part of `goatcore`, not of an environment, which is why this tree has no `ops/scripts/`.
-
 ## Using it
 
 This repository holds only what an environment owns. The tools live in `goatcore`, so copy this tree over a checkout of `goatcore` at the tag in `goatcore.ref` and work from there:
@@ -58,4 +41,4 @@ To make your own, change all four facts in `goatlite.yaml`, including the name, 
 
 ## Licence
 
-`goatenv` was written by U.S. Federal government employees. In the U.S. it is not subject to copyright and is in the public domain; in countries where copyright is recognized, it is released under the [Apache License 2.0](LICENSE). See [INTENT.md](INTENT.md). [CONTRIBUTING.md](CONTRIBUTING.md) · [SECURITY.md](SECURITY.md).
+Apache License 2.0 ([LICENSE](LICENSE)). [CONTRIBUTING.md](CONTRIBUTING.md) · [SECURITY.md](SECURITY.md).

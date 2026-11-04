@@ -40,7 +40,7 @@ goatnets:
       from day one, so no pin ever lives in its hand-authored group_vars.
     members:
       - zagros_hosts
-    ca_id_var: nova_ca_id
+    ca_id_var: goat_ca_id
 # END goatlite zagros
 components:
   # BEGIN goatlite zagros (pins: audit-subscriber)

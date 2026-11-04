@@ -224,7 +224,7 @@
       "render_watch": [
         "/opt/{{ zenoh_stack }}/docker-compose.yml"
       ],
-      "var": "nova_zenoh_image"
+      "var": "zenoh_router_image"
     },
     {
       "artifact_type": "image",
@@ -635,9 +635,9 @@
       "var": "goat_docs_image"
     }
   ],
-  "content_hash": "sha256:9e5e563e4f4aa856570754297b1292fa9d9a73416d26d4928ea78f6c84a9bd73",
+  "content_hash": "sha256:3ec1bd993ffa9f0cafea02f5feb6a6146eb7f1625404ee80345897aef97dd16f",
   "format": "goat-intent-v1",
-  "generated_at": "2026-11-04T01:28:23Z",
+  "generated_at": "2026-11-04T14:09:13Z",
   "goatnet": "zagros",
   "history": [],
   "members": [
@@ -731,8 +731,8 @@
   ],
   "serial": 1,
   "sources": {
-    "ops/pins/fleet-pins.yaml": "sha256:7fdd96330a46e6c32f0661f0efa075b55a7910cbd77c14bd4f24f95132b47448",
-    "ops/pins/lite-pins.yaml": "sha256:d9ea2fe0d1bec76fa56c99eaa51c025974f018ad8c9cd9212d439c3f9e874698",
+    "ops/pins/fleet-pins.yaml": "sha256:660eca8cf348ef1a6b9fa57a9e11ef8b65b09a5f439afd20bdceec9987108778",
+    "ops/pins/lite-pins.yaml": "sha256:b71def0a54dffe54ddd04a79e34024191b7595ddb2c33cff793c596d79d2e84d",
     "ops/pins/parity-capabilities.yaml": "sha256:c57fcb4a5926574a7680e7909993e5b5a58cbc544046d822ed6c3bc23276673f"
   },
   "ttl_seconds": 2592000,
