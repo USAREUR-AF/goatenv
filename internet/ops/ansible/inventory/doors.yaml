@@ -1,0 +1,11 @@
+# How a laptop reaches each goatnet. goatlite adds its door here.
+doors:
+
+  # BEGIN goatlite example-internet
+  example-internet:
+    type: direct
+    host: 192.0.2.20
+    user: ubuntu
+    mgmt:
+      - {name: mgmt-example-internet-01, router_role: A, group: example_internet_door_hosts, gv_group: example_internet_hosts, landed: true}
+      # END goatlite example-internet

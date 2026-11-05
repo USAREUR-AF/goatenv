@@ -11,7 +11,14 @@
 > [!NOTE]
 > goat is pre-1.0: interfaces can still change between releases. This repository is generated from goat's source tree; each update arrives as a new commit on `main`.
 
-This is what a goat environment looks like when it is written down: one goatnet, `zagros`, as an overlay that uses [`goatcore`](https://github.com/usareur-af/goatcore) by pinned release. It is generated from the four invented facts in `goatlite.yaml`, and every value is an example. Copy it, change the facts and render your own.
+This is what a goat environment looks like when it is written down: an overlay that uses [`goatcore`](https://github.com/usareur-af/goatcore) by pinned release. It holds two examples, each generated from invented facts in its own `goatlite.yaml`, and every value is an example:
+
+| Example | Where | What it is |
+|---|---|---|
+| `zagros` | the repository root | a LAN goatnet: one box, peers enrol over the LAN |
+| `example-internet` | [`internet/`](internet/) | the same preset grown to the internet: peers enrol from anywhere through relays, under a public zone with ACME certificates |
+
+Copy one, change the facts and render your own.
 
 ## What an environment owns
 
@@ -24,6 +31,7 @@ This is what a goat environment looks like when it is written down: one goatnet,
 | `ops/pins/` | which image digest each component runs here |
 | `ops/enrollment/` | the certificate manifest, the CA's root certificate and public key |
 | `terraform-zagros/` | an optional cloud footprint in your own AWS account: two relays with DNS, using goatcore's modules by tag |
+| `internet/` | the internet example: the same paths for `example-internet`, plus `terraform-example-internet/` |
 
 Secrets are never in this repository. A laptop-only start uses `goatbuilder secrets init`, and larger teams declare their own store.
 
@@ -31,16 +39,36 @@ Secrets are never in this repository. A laptop-only start uses `goatbuilder secr
 
 `zagros` is a LAN goatnet: `has_acme: false`, no relay addresses, and a private `zagros.lan` DNS zone served by the host's own CoreDNS. Peers enroll over the LAN.
 
-An internet goatnet, with peers enrolling through relays, a public DNS zone and ACME certificates, needs more than this tree holds:
+## The internet example, `example-internet`
 
-| Needs | Where it comes from |
+> [!WARNING]
+> Status: WIP, not for production use — gate: one internet standup from the rendered example on real relays.
+
+[`internet/`](internet/) is a whole second overlay. Its `goatlite.yaml` is the four facts plus a `lite.internet:` block, and the renderer produced everything else from it:
+
+```yaml
+lite:
+  name: example-internet
+  host: 192.0.2.20
+  ssh_user: ubuntu
+  admin: admin@example.org
+  internet:
+    zone: goatnet.example        # a public zone whose DNS Cloudflare serves
+```
+
+The block also takes `acme_email` (default `admin`), `aws_profile` (default the name), `relays` (default two, `a` and `b`), `cloudflare_token_ref` and, after standup phase 8 enrols the box, `mesh_ip`. A LAN goatlite grows into this shape by adding the block and rendering again; the SPIRE trust domain and the CA stay as they were.
+
+| What the block changes | Where it is |
 |---|---|
-| relays and their public DNS | `terraform-zagros/`, then `ops/ansible/inventory/generate-relays.sh` in `goatcore` |
-| the mgmt host's tunnels to the relays (standup phase 5) | `goatcore`'s `ops/ansible/site-rathole-client.yml` |
-| the site's OIDC clients (standup phase 10) | `goatcore`'s `ops/ansible/site-oidc-clients.yml` |
-| a public zone, ACME and relay addresses in `group_vars` | written by hand; goatlite's renderer refuses `lite.internet` until growing out of lite is built ([goatlite design](https://github.com/usareur-af/goatcore/blob/main/docs/design/goatlite.md), sections 6 and 10) |
+| ACME certificates through Cloudflare DNS-01 (`has_acme: true`, `dashboard_cert_delivery_mode: acme`, `acme_email`) | `internet/ops/ansible/group_vars/example_internet_hosts/vars.yml` |
+| the public enrolment apex `netbird.goatnet.example`, which is also `site_dns_zone` | the same file, and `signal_uri` in `internet/ops/ansible/inventory/mgmt-hosts.ini` |
+| the relays: `relay_addresses` (`rels://…:33073`), `stun_hosts`, the AWS profile | the same file |
+| the Cloudflare token: a lookup of `CLOUDFLARE_API_TOKEN_EXAMPLE_INTERNET` under your secrets store, never a value | the same file |
+| two relays, their public names, the apex round-robin and the SSM bucket | `internet/terraform-example-internet/main.tf` |
+| the relays' TLS posture, `le-dns01` | `internet/ops/ansible/inventory/relay-tls-posture.sh` |
+| the router certificate under the public apex, no LAN certificates | `internet/ops/enrollment/manifests/example-internet-certs.yaml` |
 
-The two generic plays ship in `goatcore` releases after `goatcore/v0.1.0`; move `goatcore.ref` to one of those to use them.
+`goatbuilder standup example-internet` then runs the internet profile: the relay tunnels in phase 5, ACME and the relay tier in phase 7, the mesh enrolment in phase 8, the OIDC clients in phase 10. The plays it reaches ship in `goatcore` releases after `goatcore/v0.1.0`; move `goatcore.ref` to one of those to use them.
 
 The `ops/scripts/` tools are part of `goatcore`, not of an environment, which is why this tree has no `ops/scripts/`.
 
@@ -54,7 +82,16 @@ cp -R ops goatlite.yaml goatcore/
 cd goatcore && python3 ops/scripts/standup-config-preflight.py zagros_hosts
 ```
 
-To make your own, change all four facts in `goatlite.yaml`, including the name, then follow [goatlite, the first goatnet](https://github.com/usareur-af/goatcore/blob/main/docs/tutorials/00-goatlite.md). The name `zagros` belongs to this example: its root certificate is here and its key is not, so a render under that name refuses with "half a CA exists". The walkthrough with recorded output to compare against is [`usareur-af/hello-galaxy-goatenv`](https://github.com/usareur-af/hello-galaxy-goatenv).
+The internet example goes over its own checkout the same way, from `internet/`:
+
+```bash
+cp -R internet/ops internet/goatlite.yaml internet/terraform-example-internet goatcore/
+cd goatcore && python3 ops/scripts/goatlite-render.py --site example-internet --verify
+```
+
+`--verify` checks that the rendered values are the internet ones: ACME on, the public apex as the zone, the relays' addresses, mesh-only routes, and every secret a lookup under your store.
+
+To make your own, change all four facts in `goatlite.yaml`, including the name, then follow [goatlite, the first goatnet](https://github.com/usareur-af/goatcore/blob/main/docs/tutorials/00-goatlite.md). The names `zagros` and `example-internet` belong to these examples: their root certificates are here and their keys are not, so a render under either name refuses with "half a CA exists". The walkthrough with recorded output to compare against is [`usareur-af/hello-galaxy-goatenv`](https://github.com/usareur-af/hello-galaxy-goatenv).
 
 ## Licence
 

@@ -1,0 +1,12 @@
+# Every goatnet's relay-health box. goatlite adds its row here.
+schema: goat/cross-env/v1
+goatnets:
+
+  # BEGIN goatlite example-internet
+  example_internet:
+    id: example-internet
+    label: example-internet
+    role: dev
+    relay_health:
+      absent: "goatlite (ADR 1213): its relays are watched by no relay-health box; a goatlite runs none"
+      # END goatlite example-internet
