@@ -635,9 +635,9 @@
       "var": "goat_docs_image"
     }
   ],
-  "content_hash": "sha256:29cfda2ad4ae98684dddf9568a59a0cc2d5d3284dae8bfcf7ca978ae6c533491",
+  "content_hash": "sha256:2b10f322d6bb44264efb67f6102305b0e4eb5d4c89c947b0243e646c79a2a203",
   "format": "goat-intent-v1",
-  "generated_at": "2026-11-05T01:27:38Z",
+  "generated_at": "2026-11-05T16:25:02Z",
   "goatnet": "zagros",
   "history": [],
   "members": [
@@ -731,7 +731,7 @@
   ],
   "serial": 1,
   "sources": {
-    "ops/pins/fleet-pins.yaml": "sha256:660eca8cf348ef1a6b9fa57a9e11ef8b65b09a5f439afd20bdceec9987108778",
+    "ops/pins/fleet-pins.yaml": "sha256:030c2a5b88ddfcd4858f50eb232493cfd329674b210d97d174b4073171de7c0d",
     "ops/pins/lite-pins.yaml": "sha256:b71def0a54dffe54ddd04a79e34024191b7595ddb2c33cff793c596d79d2e84d",
     "ops/pins/parity-capabilities.yaml": "sha256:c57fcb4a5926574a7680e7909993e5b5a58cbc544046d822ed6c3bc23276673f"
   },
