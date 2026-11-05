@@ -13,7 +13,7 @@ ca:
   root_cert: ops/enrollment/ca/zagros/root-cert.pem
   root_key: ~/.goat/state/zagros-ca/ca.key.age
   age_identity: ~/.config/age/keys.txt
-  ca_id: dev-zagros-ca-ecdsa-2026-11-04            # e.g. dev-<site>-ca-ecdsa-<YYYY-MM-DD>; read it
+  ca_id: dev-zagros-ca-ecdsa-2026-11-05            # e.g. dev-<site>-ca-ecdsa-<YYYY-MM-DD>; read it
                               # back from the root cert, do not invent one
 
 out_dir: ~/.goat/state/zagros-leaves
