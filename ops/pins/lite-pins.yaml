@@ -192,6 +192,15 @@ components:
           (site_deploy_tier_max 1, service-criticality-tiers.md) or is deployed by
           no standup phase on one LAN box; rendered by ops/scripts/goatlite-render.py.
   # END goatlite zagros (pins: mesh-health)
+  # BEGIN goatlite zagros (pins: mgmt-host-bootstrap)
+  mgmt-host-bootstrap:
+    deviations:
+      zagros:
+        absent: true
+        reason: >-
+          goatlite (ADR 1213): the fleet row is null and the dev rung carries no
+          value either; not deployed on a goatlite. Rendered by ops/scripts/goatlite-render.py.
+  # END goatlite zagros (pins: mgmt-host-bootstrap)
   # BEGIN goatlite zagros (pins: microscope)
   microscope:
     deviations:

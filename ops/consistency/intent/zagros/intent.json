@@ -1,5 +1,5 @@
 {
-  "ca_id": "dev-zagros-ca-ecdsa-2026-11-05",
+  "ca_id": "dev-zagros-ca-ecdsa-2026-11-06",
   "capabilities": [
     {
       "members": {
@@ -186,6 +186,33 @@
       },
       "name": "signal-server",
       "var": "signal_server_image"
+    },
+    {
+      "artifact_type": "image",
+      "ledger_component": "admit-audit",
+      "members": {
+        "zagros_hosts": {
+          "state": "resolved",
+          "value": "ghcr.io/{{ ghcr_org }}/goat-admit-audit@sha256:4b4d996ced4999507630266a21ec69a16bf19644df102d205c268d972ca64645"
+        }
+      },
+      "name": "admit-audit",
+      "var": "admit_audit_image"
+    },
+    {
+      "artifact_type": "image",
+      "ledger_component": null,
+      "members": {
+        "zagros_hosts": {
+          "declared": {
+            "reason": "goatlite (ADR 1213): the fleet row is null and the dev rung carries no value either; not deployed on a goatlite. Rendered by ops/scripts/goatlite-render.py.",
+            "scope": "zagros"
+          },
+          "state": "absent"
+        }
+      },
+      "name": "mgmt-host-bootstrap",
+      "var": "mgmt_host_bootstrap_image"
     },
     {
       "artifact_type": "image",
@@ -635,9 +662,9 @@
       "var": "goat_docs_image"
     }
   ],
-  "content_hash": "sha256:2b10f322d6bb44264efb67f6102305b0e4eb5d4c89c947b0243e646c79a2a203",
+  "content_hash": "sha256:a092365206a86b9f4f0d6e97a86853244463af94cf369508f171e6bc393496d0",
   "format": "goat-intent-v1",
-  "generated_at": "2026-11-05T21:03:30Z",
+  "generated_at": "2026-11-06T04:24:19Z",
   "goatnet": "zagros",
   "history": [],
   "members": [
@@ -731,8 +758,8 @@
   ],
   "serial": 1,
   "sources": {
-    "ops/pins/fleet-pins.yaml": "sha256:030c2a5b88ddfcd4858f50eb232493cfd329674b210d97d174b4073171de7c0d",
-    "ops/pins/lite-pins.yaml": "sha256:b71def0a54dffe54ddd04a79e34024191b7595ddb2c33cff793c596d79d2e84d",
+    "ops/pins/fleet-pins.yaml": "sha256:799bd6a973c67f3b77fe14a923056c1cf03f12b92f037c7547957f792a28b198",
+    "ops/pins/lite-pins.yaml": "sha256:380ba9bab15955864b26212b4fbe4a15cf23b4b066dd50bbb4ac0d6102d09a87",
     "ops/pins/parity-capabilities.yaml": "sha256:c57fcb4a5926574a7680e7909993e5b5a58cbc544046d822ed6c3bc23276673f"
   },
   "ttl_seconds": 2592000,

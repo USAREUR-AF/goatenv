@@ -1,5 +1,5 @@
 {
-  "ca_id": "dev-example-internet-ca-ecdsa-2026-11-05",
+  "ca_id": "dev-example-internet-ca-ecdsa-2026-11-06",
   "capabilities": [
     {
       "members": {
@@ -180,6 +180,33 @@
       },
       "name": "signal-server",
       "var": "signal_server_image"
+    },
+    {
+      "artifact_type": "image",
+      "ledger_component": "admit-audit",
+      "members": {
+        "example_internet_hosts": {
+          "state": "resolved",
+          "value": "ghcr.io/{{ ghcr_org }}/goat-admit-audit@sha256:4b4d996ced4999507630266a21ec69a16bf19644df102d205c268d972ca64645"
+        }
+      },
+      "name": "admit-audit",
+      "var": "admit_audit_image"
+    },
+    {
+      "artifact_type": "image",
+      "ledger_component": null,
+      "members": {
+        "example_internet_hosts": {
+          "declared": {
+            "reason": "goatlite (ADR 1213): the fleet row is null and the dev rung carries no value either; not deployed on a goatlite. Rendered by ops/scripts/goatlite-render.py.",
+            "scope": "example_internet"
+          },
+          "state": "absent"
+        }
+      },
+      "name": "mgmt-host-bootstrap",
+      "var": "mgmt_host_bootstrap_image"
     },
     {
       "artifact_type": "image",
@@ -629,9 +656,9 @@
       "var": "goat_docs_image"
     }
   ],
-  "content_hash": "sha256:e05f779e18d66429113258b4e605114c6d15e5f7ffca729bdbea8fd7f4bfc7e9",
+  "content_hash": "sha256:1900e18a27d65efc165baa1a8e74729cb0f983bbdc84b46603911b02881aa505",
   "format": "goat-intent-v1",
-  "generated_at": "2026-11-05T21:03:48Z",
+  "generated_at": "2026-11-06T04:24:35Z",
   "goatnet": "example_internet",
   "history": [],
   "members": [
@@ -725,8 +752,8 @@
   ],
   "serial": 1,
   "sources": {
-    "ops/pins/fleet-pins.yaml": "sha256:030c2a5b88ddfcd4858f50eb232493cfd329674b210d97d174b4073171de7c0d",
-    "ops/pins/lite-pins.yaml": "sha256:6977cfc5febb30827e1bdc04d3ec937a6232de51d8fe0f602ef422f12a2e8cf8",
+    "ops/pins/fleet-pins.yaml": "sha256:799bd6a973c67f3b77fe14a923056c1cf03f12b92f037c7547957f792a28b198",
+    "ops/pins/lite-pins.yaml": "sha256:a649e1827f39cb2ca0a1de6a740a3de0de7a47fc141dc60e5e0d9f134f319950",
     "ops/pins/parity-capabilities.yaml": "sha256:c57fcb4a5926574a7680e7909993e5b5a58cbc544046d822ed6c3bc23276673f"
   },
   "ttl_seconds": 2592000,
