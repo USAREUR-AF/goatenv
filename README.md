@@ -32,8 +32,35 @@ Copy one, change the facts and render your own.
 | `ops/enrollment/` | the certificate manifest, the CA's root certificate and public key |
 | `terraform-zagros/` | an optional cloud footprint in your own AWS account: two relays with DNS, using goatcore's modules by tag |
 | `internet/` | the internet example: the same paths for `example-internet`, plus `terraform-example-internet/` |
+| `base-images-chainguard/` | an example of base images chosen by the environment: one file per role, the Chainguard images the goat team builds on |
 
 Secrets are never in this repository. A laptop-only start uses `goatbuilder secrets init`, and larger teams declare their own store.
+
+## Your own base images
+
+Every goat image starts from base images named by role (`rust-build`, `go-build`, `node-build`, `runtime-cc`, `runtime-static`, `runtime-shell`). The public images `zagros` pins are built on goatcore's defaults: Debian official images and distroless Debian 13, which anyone may redistribute. An environment that wants other bases, such as a hardened catalogue or its own mirror, carries a file per role at `ops/base-images/<role>/Dockerfile`, holding one digest-pinned `FROM` line. When the environment is copied over goatcore, those files replace the defaults, and every image built from that tree uses them. No Dockerfile changes.
+
+[`base-images-chainguard/`](base-images-chainguard/) holds the six files the goat team's own goatnets use, on Chainguard:
+
+```text
+base-images-chainguard/ops/base-images/rust-build/Dockerfile      FROM cgr.dev/chainguard/rust:latest-dev@sha256:5412…
+base-images-chainguard/ops/base-images/runtime-cc/Dockerfile      FROM cgr.dev/chainguard/glibc-dynamic:latest@sha256:671a…
+…
+```
+
+To build on them, copy them into this tree's `ops/`, assemble as below, build and pin your own digests:
+
+```bash
+cp -R base-images-chainguard/ops .              # the environment now chooses its bases
+git clone --branch "$(cat goatcore.ref)" https://github.com/usareur-af/goatcore.git
+cp -R ops goatlite.yaml goatcore/
+cd goatcore
+python3 ops/base-images/base-images.py list     # your images for every role
+python3 ops/base-images/base-images.py build --unit goat-relay-image \
+  --tag registry.example.org/zagros/goat-relay:local-1 --platform linux/amd64,linux/arm64 --push
+```
+
+Then put the pushed digest in `ops/pins/fleet-pins.yaml` in place of the public image. Refresh the role digests with Dependabot on the `ops/base-images/<role>` directories, or with `crane digest`. The procedure and the rules each role's image must meet: goatcore's [build goat images on your own base images](https://github.com/usareur-af/goatcore/blob/main/docs/operations/build-on-your-own-base-images.md). The rehearsed walkthrough: [`usareur-af/hello-galaxy-goatenv`](https://github.com/usareur-af/hello-galaxy-goatenv) `base-images/`.
 
 ## What `zagros` covers
 
