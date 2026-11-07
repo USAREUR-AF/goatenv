@@ -32,26 +32,27 @@ Copy one, change the facts and render your own.
 | `ops/enrollment/` | the certificate manifest, the CA's root certificate and public key |
 | `terraform-zagros/` | an optional cloud footprint in your own AWS account: two relays with DNS, using goatcore's modules by tag |
 | `internet/` | the internet example: the same paths for `example-internet`, plus `terraform-example-internet/` |
-| `base-images-chainguard/` | an example of base images chosen by the environment: one file per role, the Chainguard images the goat team builds on |
+| `base-images-private-catalogue/` | an example of base images chosen by the environment: one file per role, from a private Chainguard catalogue |
 
 Secrets are never in this repository. A laptop-only start uses `goatbuilder secrets init`, and larger teams declare their own store.
 
 ## Your own base images
 
-Every goat image starts from base images named by role (`rust-build`, `go-build`, `node-build`, `runtime-cc`, `runtime-static`, `runtime-shell`). The public images `zagros` pins are built on goatcore's defaults: Debian official images and distroless Debian 13, which anyone may redistribute. An environment that wants other bases, such as a hardened catalogue or its own mirror, carries a file per role at `ops/base-images/<role>/Dockerfile`, holding one digest-pinned `FROM` line. When the environment is copied over goatcore, those files replace the defaults, and every image built from that tree uses them. No Dockerfile changes.
+Every goat image starts from base images named by role (`rust-build`, `go-build`, `node-build`, `runtime-cc`, `runtime-static`, `runtime-shell`). The public images `zagros` pins are built on goatcore's defaults: Chainguard's free images, pinned by digest. An environment that wants other bases, such as a private Chainguard catalogue or its own mirror, carries a file per role at `ops/base-images/<role>/Dockerfile`, holding one digest-pinned `FROM` line. When the environment is copied over goatcore, those files replace the defaults, and every image built from that tree uses them. No Dockerfile changes.
 
-[`base-images-chainguard/`](base-images-chainguard/) holds the six files the goat team's own goatnets use, on Chainguard:
+[`base-images-private-catalogue/`](base-images-private-catalogue/) holds six such files for a private catalogue under a placeholder organisation, `example-org`:
 
 ```text
-base-images-chainguard/ops/base-images/rust-build/Dockerfile      FROM cgr.dev/chainguard/rust:latest-dev@sha256:5412…
-base-images-chainguard/ops/base-images/runtime-cc/Dockerfile      FROM cgr.dev/chainguard/glibc-dynamic:latest@sha256:671a…
+base-images-private-catalogue/ops/base-images/rust-build/Dockerfile   FROM cgr.dev/example-org/rust:1.92-dev@sha256:<digest>
+base-images-private-catalogue/ops/base-images/runtime-cc/Dockerfile   FROM cgr.dev/example-org/glibc-dynamic-fips:latest@sha256:<digest>
 …
 ```
 
 To build on them, copy them into this tree's `ops/`, assemble as below, build and pin your own digests:
 
 ```bash
-cp -R base-images-chainguard/ops .              # the environment now chooses its bases
+cp -R base-images-private-catalogue/ops .       # the environment now chooses its bases
+docker login cgr.dev                            # a private catalogue needs your pull credentials
 git clone --branch "$(cat goatcore.ref)" https://github.com/usareur-af/goatcore.git
 cp -R ops goatlite.yaml goatcore/
 cd goatcore
