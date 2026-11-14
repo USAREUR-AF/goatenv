@@ -235,7 +235,7 @@ netbird_acl_taxonomy:
     # belongs to nobody, carried in the rule intents and matrix this
     # environment copies from goatcore, and never stood up. Declared so its
     # matrix rules resolve against declared groups, as every matrix site's must.
-    site_prefix: ZAGROS
+    site_prefix: HELLO-GALAXY
     groups:
     - suffix: HUB
       description: "The substrate: runs the goatnet's own services."
