@@ -134,6 +134,12 @@ netbird_acl_matrix:
         action: accept
         bidirectional: false
 
+    # ADR 1185: the rules above are the whole surface, so NetBird's own
+    # Default All->All policy is removed at cutover, never kept or disabled.
+    cutover:
+      default_policy_action: delete
+      default_policy_name_pattern: "Default"
+
   # BEGIN goatlite zagros
   zagros:
     # goatlite (ADR 1213): the zagros posture (operator intent 2026-07-15) shrunk
