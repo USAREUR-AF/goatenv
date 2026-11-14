@@ -96,7 +96,7 @@ The block also takes `acme_email` (default `admin`), `aws_profile` (default the 
 | the relays' TLS posture, `le-dns01` | `internet/ops/ansible/inventory/relay-tls-posture.sh` |
 | the router certificate under the public apex, no LAN certificates | `internet/ops/enrollment/manifests/example-internet-certs.yaml` |
 
-`goatbuilder standup example-internet` then runs the internet profile: the relay tunnels in phase 5, ACME and the relay tier in phase 7, the mesh enrolment in phase 8, the OIDC clients in phase 10. The plays it reaches ship in `goatcore` releases after `goatcore/v0.1.0`; move `goatcore.ref` to one of those to use them.
+`goatbuilder standup example-internet` then runs the internet profile: the relay tunnels in phase 5, ACME and the relay tier in phase 7, the mesh enrolment in phase 8, the OIDC clients in phase 10. The plays it reaches ship in `goatcore` releases after `goatcore/v0.1.0`, and the release in `goatcore.ref` has them.
 
 The `ops/scripts/` tools are part of `goatcore`, not of an environment, which is why this tree has no `ops/scripts/`.
 

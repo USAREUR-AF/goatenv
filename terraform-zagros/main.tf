@@ -62,7 +62,7 @@ provider "aws" {
 provider "cloudflare" {} # reads CLOUDFLARE_API_TOKEN
 
 module "relay_a" {
-  source    = "git::https://github.com/usareur-af/goatcore.git//terraform/modules/goat-relay?ref=goatcore/v0.1.0"
+  source    = "git::https://github.com/usareur-af/goatcore.git//terraform/modules/goat-relay?ref=goatcore/v0.6.1"
   providers = { aws = aws.a }
 
   relay_name           = "a"
@@ -74,7 +74,7 @@ module "relay_a" {
 }
 
 module "relay_b" {
-  source    = "git::https://github.com/usareur-af/goatcore.git//terraform/modules/goat-relay?ref=goatcore/v0.1.0"
+  source    = "git::https://github.com/usareur-af/goatcore.git//terraform/modules/goat-relay?ref=goatcore/v0.6.1"
   providers = { aws = aws.b }
 
   relay_name           = "b"
