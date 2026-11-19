@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 446" width="880" height="446" role="img" aria-labelledby="t d" font-family="-apple-system, BlinkMacSystemFont, &apos;Segoe UI&apos;, &apos;Noto Sans&apos;, Helvetica, Arial, sans-serif">
+<title id="t">goatcore at a pinned release, plus this overlay, is one goatnet</title>
+<desc id="d">goatcore at goatcore/v0.6.1 holds the code: plays, the ops/scripts/ tools and the image builds. This repository holds only what the environment owns: four facts in goatlite.yaml (name zagros, host 192.0.2.10, ssh_user ubuntu, admin admin@example.org) and what is rendered from them (ops/ansible/group_vars/zagros_hosts/, ops/ansible/inventory/, ops/pins/, ops/enrollment/). Copying the overlay over a goatcore checkout gives one tree; standing it up gives the LAN goatnet zagros: one box, mgmt-zagros-01, with the DNS zone zagros.lan served by the host and peers enrolling over the LAN.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="#818b98"/></marker></defs>
+<rect width="100%" height="100%" rx="12" fill="#ffffff"/>
+<text x="24" y="38" font-size="20" fill="#1f2328" text-anchor="start" font-weight="600">goatcore at a pinned release, plus this overlay, is one goatnet</text>
+<text x="24" y="62" font-size="14" fill="#59636e" text-anchor="start">zagros is built from invented facts: every value in this repository is an example.</text>
+<rect x="24" y="92" width="292" height="108" rx="8" fill="#f6f8fa" stroke="#d1d9e0" stroke-width="1.5"/>
+<text x="40" y="120" font-size="16" fill="#1f2328" text-anchor="start" font-weight="600">goatcore</text>
+<text x="300" y="120" font-size="13" fill="#59636e" text-anchor="end" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace">goatcore/v0.6.1</text>
+<text x="40" y="146" font-size="14" fill="#59636e" text-anchor="start">the code, at the tag in goatcore.ref:</text>
+<text x="40" y="168" font-size="14" fill="#1f2328" text-anchor="start">plays, the ops/scripts/ tools,</text>
+<text x="40" y="188" font-size="14" fill="#1f2328" text-anchor="start">image builds and their base images</text>
+<rect x="24" y="220" width="292" height="200" rx="8" fill="#ddf4ff" stroke="#0969da" stroke-width="2"/>
+<text x="40" y="248" font-size="16" fill="#1f2328" text-anchor="start" font-weight="600">goatenv: this overlay</text>
+<text x="40" y="272" font-size="14" fill="#59636e" text-anchor="start">goatlite.yaml, the four facts</text>
+<text x="52" y="296" font-size="13" fill="#59636e" text-anchor="start" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace">name:</text>
+<text x="144" y="296" font-size="13" fill="#1f2328" text-anchor="start" font-weight="600" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace">zagros</text>
+<text x="52" y="315" font-size="13" fill="#59636e" text-anchor="start" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace">host:</text>
+<text x="144" y="315" font-size="13" fill="#1f2328" text-anchor="start" font-weight="600" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace">192.0.2.10</text>
+<text x="52" y="334" font-size="13" fill="#59636e" text-anchor="start" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace">ssh_user:</text>
+<text x="144" y="334" font-size="13" fill="#1f2328" text-anchor="start" font-weight="600" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace">ubuntu</text>
+<text x="52" y="353" font-size="13" fill="#59636e" text-anchor="start" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace">admin:</text>
+<text x="144" y="353" font-size="13" fill="#1f2328" text-anchor="start" font-weight="600" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace">admin@example.org</text>
+<text x="40" y="380" font-size="14" fill="#59636e" text-anchor="start">rendered from them: site vars,</text>
+<text x="40" y="400" font-size="14" fill="#59636e" text-anchor="start">inventory, pins, the CA's public half</text>
+<rect x="362" y="150" width="180" height="160" rx="8" fill="#f6f8fa" stroke="#818b98" stroke-width="1.5"/>
+<text x="452" y="178" font-size="16" fill="#1f2328" text-anchor="middle" font-weight="600">one checkout</text>
+<text x="452" y="202" font-size="14" fill="#59636e" text-anchor="middle">the overlay copied</text>
+<text x="452" y="222" font-size="14" fill="#59636e" text-anchor="middle">over goatcore</text>
+<text x="378" y="252" font-size="13" fill="#1f2328" text-anchor="start" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace">cp -R ops</text>
+<text x="378" y="271" font-size="13" fill="#1f2328" text-anchor="start" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace">goatlite.yaml</text>
+<text x="378" y="290" font-size="13" fill="#1f2328" text-anchor="start" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace">goatcore/</text>
+<path d="M316 146 C 346 146, 332 200, 360 200" fill="none" stroke="#818b98" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M316 320 C 346 320, 332 260, 360 260" fill="none" stroke="#0969da" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="604" y="92" width="252" height="328" rx="8" fill="#dafbe1" stroke="#1a7f37" stroke-width="2"/>
+<text x="620" y="120" font-size="16" fill="#1f2328" text-anchor="start" font-weight="600">goatnet zagros</text>
+<text x="620" y="142" font-size="14" fill="#59636e" text-anchor="start">a LAN goatnet, one box</text>
+<rect x="620" y="162" width="220" height="132" rx="8" fill="#ffffff" stroke="#1a7f37" stroke-width="1.5"/>
+<text x="632" y="186" font-size="13" fill="#1f2328" text-anchor="start" font-weight="600" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace">mgmt-zagros-01</text>
+<text x="632" y="212" font-size="13" fill="#1f2328" text-anchor="start" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace">mgmt.zagros.zagros.lan</text>
+<text x="632" y="232" font-size="13" fill="#1f2328" text-anchor="start" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace">oauth2.zagros.zagros.lan</text>
+<text x="632" y="252" font-size="13" fill="#1f2328" text-anchor="start" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace">portal.zagros.zagros.lan</text>
+<text x="632" y="272" font-size="13" fill="#1f2328" text-anchor="start" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace">zenoh.zagros.zagros.lan</text>
+<line x1="542" y1="230" x2="602" y2="230" stroke="#818b98" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="573" y="220" font-size="13" fill="#59636e" text-anchor="middle">standup</text>
+<line x1="644" y1="342" x2="665.5" y2="298" stroke="#1a7f37" stroke-width="1.2" stroke-dasharray="3,3"/>
+<circle cx="644" cy="352" r="7" fill="#1a7f37"/>
+<line x1="687" y1="342" x2="697.8" y2="298" stroke="#1a7f37" stroke-width="1.2" stroke-dasharray="3,3"/>
+<circle cx="687" cy="352" r="7" fill="#1a7f37"/>
+<line x1="730" y1="342" x2="730" y2="298" stroke="#1a7f37" stroke-width="1.2" stroke-dasharray="3,3"/>
+<circle cx="730" cy="352" r="7" fill="#1a7f37"/>
+<line x1="773" y1="342" x2="762.2" y2="298" stroke="#1a7f37" stroke-width="1.2" stroke-dasharray="3,3"/>
+<circle cx="773" cy="352" r="7" fill="#1a7f37"/>
+<line x1="816" y1="342" x2="794.5" y2="298" stroke="#1a7f37" stroke-width="1.2" stroke-dasharray="3,3"/>
+<circle cx="816" cy="352" r="7" fill="#1a7f37"/>
+<text x="620" y="384" font-size="14" fill="#1f2328" text-anchor="start">peers enroll over the LAN</text>
+<text x="620" y="404" font-size="13" fill="#59636e" text-anchor="start">DNS zone zagros.lan, no ACME</text>
+</svg>
