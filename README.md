@@ -1,12 +1,13 @@
-<h1 align="center">goatenv</h1>
+# goatenv
 
-<p align="center">
-  A complete example goat environment, kept separate from the code it deploys.
-</p>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/figures/goatnet-assembly-dark.svg">
+  <img src="docs/figures/goatnet-assembly-light.svg" width="760" alt="goatcore at the release in goatcore.ref holds the code; this overlay holds the four facts in goatlite.yaml and what is rendered from them. Copied over a goatcore checkout and stood up, they make the LAN goatnet zagros: one box, its services under the zone zagros.lan, peers enrolling over the LAN.">
+</picture>
 
-<p align="center">
-  <a href="LICENSE"><img src="https://img.shields.io/badge/License-Apache_2.0-blue.svg" alt="License: Apache 2.0"></a>
-</p>
+A complete example goat environment, kept separate from the code it deploys. Copy it, change the four facts in `goatlite.yaml`, and render a goatnet of your own.
+
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 
 > [!NOTE]
 > goat is pre-1.0: interfaces can still change between releases.
